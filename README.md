@@ -1,0 +1,2 @@
+# Tasarim-Kaliplari
+YAZILIM TASARIM KALIPLARI
