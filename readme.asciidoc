@@ -1,1 +1,106 @@
+= Linux Nedir?
 
+Linux bilgisayar işletim sistemlerinin en temel parçası olan çekirdek yazılımlarından bir tanesidir. Linux, İnternet üzerinde ilgili ve meraklı birçok kişi tarafından ortak olarak geliştirilmekte olan ve birçok platformda çalışabilen ve herhangi bir maliyeti olmayan bir işletim sistemidir.
+
+== Neden Linux?
+
+. Özgürdür
+
+* Linux ve "Açık Kaynaklı" yazılımlar özgürdür. Bu, lisanslarının "özgür lisans" olduğu anlamına gelir. Üreticiyi sizden korumak için değil sizin haklarınızı korumak için tasarlanmıştır.
+
+. Şeffaftır
+
+* Linux açık kaynak kodlu olduğu için bu kodlara erişebilir içerisinde neler yapıldığını kontrol edebilir ve kendi ihtiyacınıza göre değiştirebilirsiniz.
+
+. Özelleştirilebilir
+
+* Linux kulanıcıya olabildiğince çok imkan vermektedir. Birçok işletim sistemi üzerinde yapamayacağınız şeyleri yapabilirsiniz. Sistemi, kendi beğeninize göre özgürce değiştirebilirsiniz. Hem görünüş, hem de davranış açısından.
+
+[WARNING]
+====
+ Linux kullanmak alışılmış diğer işletim sistemlerini kullanmaktan daha zordur.
+====
+
+[NOTE]
+====
+ Linux pazar payı düşüktür. Kullanıcılar genellikle kullanımı daha kolay ve ihtiyaçlarını daha kolay giderebilecekleri işletim sistemlerini yönelirler.
+====
+
+[IMPORTANT]
+====
+ Linux bilgisayara onu kullanmaya ve kodlamaya dair hayayınıza yeni bir pencere açacaktır.
+====
+
+https://www.linux.org/ - https://asciidocfx.com/[AsciidocFX]
+
+image::https://st3.myideasoft.com/idea/ct/82/myassets/blogs/temel-linux-komutlari.jpg[]
+
+video::y_z-O2xFtnM[youtube]
+
+[source,C++]
+----
+#include <iostream>
+using namespace std;
+
+struct student
+{
+    char name[50];
+    int roll;
+    float marks;
+} s[10];
+
+int main()
+{
+    cout << "Enter information of students: " << endl;
+
+    // storing information
+    for(int i = 0; i < 10; ++i)
+    {
+        s[i].roll = i+1;
+        cout << "For roll number" << s[i].roll << "," << endl;
+
+        cout << "Enter name: ";
+        cin >> s[i].name;
+
+        cout << "Enter marks: ";
+        cin >> s[i].marks;
+
+        cout << endl;
+    }
+
+    cout << "Displaying Information: " << endl;
+
+    // Displaying information
+    for(int i = 0; i < 10; ++i)
+    {
+        cout << "\nRoll number: " << i+1 << endl;
+        cout << "Name: " << s[i].name << endl;
+        cout << "Marks: " << s[i].marks << endl;
+    }
+
+    return 0;
+}
+----
+
+[source,bash]
+----
+#!/bin/bash
+number=0
+echo -n "Bir sayi girini > "
+read number
+echo "Girdiginiz Sayi $number"
+if [ $((number % 2)) -eq 0 ]; then
+    echo "Girdiginiz sayi cifttir"
+else
+    echo "Girdiginiz sayi tektir."
+fi
+----
+
+.Linux Dağıtımları
+[options="header,footer"]
+|=======================
+|DAĞITIM|AMAÇ
+|DEBİAN    |Linux uzmanları ve ticari amaçlı uygulamalar için    
+|KALİ|Güvenlik ve sızma testleri için
+|UBUNTU |Ev kullanıcıları ve robot programlama 
+|=======================
