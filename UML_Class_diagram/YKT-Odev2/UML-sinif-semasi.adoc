@@ -1,0 +1,106 @@
+== Aggregation (Barındırma, İçerme)
+
+--
+@startuml
+Bisiklet o-- Tekerlek
+Bisiklet o-- Pedal
+Bisiklet o-- Fren
+Bisiklet o-- Vites
+@enduml
+--
+
+== Composition (Bağımlı İyelik)
+
+--
+@startuml
+Motor *-- Krank
+Motor *-- Piston
+Motor *-- Supaplar
+@enduml
+--
+
+== Generalization (Genelleme)
+
+--
+@startuml
+Birey <|-- Öğrenci
+Birey <|-- Çalışan
+
+class Birey {
+  -String İsim
+  -String Soyİsim
+  -int KimlikNo
+  -String Şehir
+  -int TelefonNo
+  +void adresDegistir()
+  +void isimDegistir()
+}
+class Öğrenci{
+  -int ÖğrenciNo
+  -String Bölüm
+  +void öğrenciBul()
+  +void öğrenciGöster()
+}
+class Çalışan {
+   -int ÇalışanNo
+   -int Maaş
+   -String Bölüm
+   +void çalışanBul()
+   +void maaşDüzenle()
+}
+@enduml
+--
+
+== Realization (Gerçekleme)
+
+--
+@startuml
+İnsan <|.. Öğrenci
+İnsan <|.. Profesör
+
+class İnsan{
+  String İsim
+  String Soyİsim
+}
+class Öğrenci{
+  int ÖğrenciNo
+}
+class Profesör {
+   int Maaş
+}
+@enduml
+--
+
+== Dependency (Bağımlılık)
+--
+@startuml
+Müşteri ..> "gönderim" Tedarikçi
+@enduml
+--
+
+== Use (Kullanma)
+
+--
+@startuml
+İnsan ..> "use" Bilgisayar
+
+class İnsan{
+  +void kullan()
+}
+@enduml
+--
+
+== Association (Referans veya Birliktelik)
+
+--
+@startuml
+Bisiklet "binici"-- "araç"İnsan :binme
+
+class Bisiklet{
+   İnsan binici
+}
+class İnsan{
+   Bisiklet bisiklet
+}
+@enduml
+--
