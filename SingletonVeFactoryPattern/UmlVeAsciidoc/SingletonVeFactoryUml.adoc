@@ -1,0 +1,140 @@
+== Singleton Ve Thread-Safe
+
+Singleton pattern bir sınıftan yalnızca bir nesne oluşmasını sağlamak için geliştirilmiş bir kalıptır. Bu sayede nesneden yeni bir tane oluşturmasını engeller ve nesneye ihtiyaç duyulduğunda o nesnenin daha önceden oluşturulan örneği çağırır.
+
+Ben projemde, her üyenin siparis verme işini tek bir nesne üzerinden yapması için singleton’a başvurdum.
+
+== Factory Pattern
+
+Yazdığımız program da birbirine benzeyen birden fazla sınıf olabilir.Bu benzer nesnelerin üretiminden sorumlu olan kalıp factorydir.
+
+Projemde birbirine benzeyen odeme sınıflarını bir arayüz altına aldım.
+
+Odeme factory classından odeme arayüzündeki classlardan nesneler üretebildim.
+
+== Factory Pattern Kodu
+[source,Java]
+----
+public static Odeme createOdeme(Class clss) throws InstantiationException, IllegalAccessException {
+            return  (Odeme) clss.newInstance();
+        }
+    
+----
+
+[source,Java]
+----
+        try {
+            HavaleIleOdeme havaleIleOdeme = (HavaleIleOdeme) OdemeFactory.createOdeme(HavaleIleOdeme.class);
+            havaleIleOdeme.adres();
+
+            KrediKarti krediKarti = (KrediKarti) OdemeFactory.createOdeme(KrediKarti.class);
+            krediKarti.adres();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+----
+
+== Thread Safe Ve Singleton Pattern Kodu
+
+[source,Java]
+----
+public interface Odeme {
+    void adres();
+}
+
+class KrediKarti implements Odeme{
+    public void adres() {
+        System.out.println("KrediKarti Ile Odeme");
+    }
+}
+
+class KapidaOdeme implements Odeme{
+    public void adres() {
+        System.out.println("Kapida Odeme");
+    }
+}
+
+class PuanIleOdeme implements Odeme{
+    public void adres() {
+        System.out.println("Puan Ile Odeme");
+    }
+}
+
+class HavaleIleOdeme implements Odeme{
+    public void adres() {
+        System.out.println("Havale Ile Odeme");
+    }
+}
+----
+
+[source,Java]
+----
+private static Siparis instance = null;
+
+    public String ilanId;
+    public String urunAdi;
+    public String adres;
+    public int tutar;
+
+    private Siparis(){
+        //...
+    }
+    private void SiparisVer(){
+        System.out.println("Siparis Verildi...");
+    }
+    public static Siparis getInstance()
+    {
+        if (instance == null){
+            instance = new Siparis();
+        }
+        return instance;
+    }
+    public static void main(String[] args) {
+        //Singleton
+        Siparis nesne = Siparis.getInstance();
+        Siparis nesne2 = Siparis.getInstance();
+
+        nesne.SiparisVer();
+        nesne2.SiparisVer();
+----
+
+== UML Diyagramı
+....
+@startuml
+class Siparis{ 
+-String ilanId;
+-String urunAdi;
+-String adres;
+-int tutar;
+-instance:Siparis
++void SiparisVer()
+-private Siparis()
+Siparis getInstance()
+}
+class OdemeFactory{
+public static Odeme createOdeme(Class clss)
+}
+Interface Odeme{
+void odeme()
+}
+class KrediKarti{
+void odeme()
+}
+class KapidaOdeme{
+void odeme()
+}
+class PuanIleOdeme{
+void odeme()
+}
+class HavaleIleOdeme{
+void odeme()
+}
+Odeme<|.. KrediKarti
+Odeme<|.. KapidaOdeme
+Odeme<|.. PuanIleOdeme
+Odeme<|.. HavaleIleOdeme
+OdemeFactory ..> "odeme" Odeme
+Siparis ..> "siparisVer" OdemeFactory
+@enduml
+....
