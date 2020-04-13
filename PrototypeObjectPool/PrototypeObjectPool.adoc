@@ -1,0 +1,11 @@
+== Prototype
+
+Var olan bir nesneden, kopyalama yöntemi ile yeni nesne yaratmak için bu tasarım deseni kullanılır
+
+== Object Pool
+
+Projelerimizde sınıfların oluşturulması bazen masraflı olabiliyor. Bellekten gereksiz yer ayırma durumunda performans sorunları ortaya çıkabiliyor. Bu tür performans sorunlarını çözmek için sınıfların yeniden oluşturulmasını engellemek bir çözüm olabilir. Bunun için Object Pool Design Pattern bulunmakta.
+
+=== Kaynakça
+
+https://www.journaldev.com/1440/prototype-design-pattern-in-java
