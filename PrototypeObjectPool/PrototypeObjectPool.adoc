@@ -9,3 +9,71 @@ Projelerimizde sınıfların oluşturulması bazen masraflı olabiliyor. Bellekt
 === Kaynakça
 
 https://www.journaldev.com/1440/prototype-design-pattern-in-java
+
+== UML Diyagramı
+
+....
+
+@startuml
+abstract class ObjectPool{
+pool:ConConcurrentLinkedQueue<T>
+executorService:ScheduledExecutorService
++ObjectPool()
++ObjectPool(final int minObjects, final int maxObjects, final long validationInterval)
++borrowObject():T
++void returnObject()
++void shutdown()
+#<<abstract>>createObject():T
+-void initialize(final int minObjects)
+}
+class ExportingProcess {
+-long processNo
++ExportingProcess(long processNo)
++long getProcessNo()
+}
+class ExportingTask{
+-ObjectPool<ExportingProcess> pool
+-int threadNo
+}
+class ObjectPoolDemo{
+-ObjectPool<ExportingProcess> pool
+-AtomicLong processNo=new AtomicLong(0);
++void setUp()
++void tearDown()
++void testObjectPool()
++static void main
+}
+ObjectPoolDemo --> ExportingTask
+ExportingTask --> ExportingProcess
+ExportingTask --> ObjectPool
+
+class Prototype{
+-List<String> paymentList
++clone()
++void loadData()
++Prototype(){
+        paymentList = new ArrayList<String>()
++getOdemeList()
+}
+Interface Payment{
+void payment()
+}
+class CreditCard{
+void payment()
+}
+class Cash{
+void payment()
+}
+class Point{
+void payment()
+}
+class Transfer{
+void payment()
+}
+Prototype <|-- Payment
+Payment<|.. CreditCard
+Payment<|.. Cash
+Payment<|.. Point
+Payment<|.. Transfer
+@enduml
+....
