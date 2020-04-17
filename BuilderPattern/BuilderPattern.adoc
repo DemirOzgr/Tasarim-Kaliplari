@@ -1,0 +1,54 @@
+== Builder Pattern
+
+Bu tasarım deseni ile bir nesneyi, bir sınıfı, aşama aşama farklı özellikleri ile oluşturabiliriz. Nesneyi farklı özellikler ile oluşturmaya yarayan bu sınıfa Kurucu nesne ismi verilir. Kurucu nesneden farklı özelliklerde alt sınıflar da türeyebilir.
+
+== UML Diyagramı
+
+....
+@startuml
+title Builder Diagram
+
+class Order{
+    - String msisdn
+    - String customerId
+    - String userName
+    - String customerEmail
+    - String deliveryAdress
+    - String orderState
+    - BigDecimal totalPrice
+    + Order()
+    + String getMsisdn()
+    + String getCustomerId()
+    + String getUserName()
+    + String getCustomerEmail()
+    + String getDeliveryAdress()
+    + String getOrderState()
+    + BigDecimal getTotalPrice()
+    + String toString()
+}
+class OrderBuilder <<static>> {
+    - String msisdn
+    - String customerId
+    - String userName
+    - String customerEmail
+    - String deliveryAdress
+    - String orderState
+    - BigDecimal totalPrice
+    + OrderBuilder()
+    + OrderBuilder msisdn()
+    + OrderBuilder customerId()
+    + OrderBuilder userName()
+    + OrderBuilder customerEmail()
+    + OrderBuilder deliveryAdress()
+    + OrderBuilder orderState()
+    + OrderBuilder totalPrice()
+    + Order build()
+}
+class OrderService{
+    + void main()
+}
+
+OrderBuilder .right.> Order:uses
+Order .right.> OrderService:uses
+@enduml
+....
