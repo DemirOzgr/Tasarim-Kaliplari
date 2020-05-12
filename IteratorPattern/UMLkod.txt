@@ -1,0 +1,21 @@
+@startuml
+
+interface Iterator <<interface>> {
+  + boolean hasNext()
+  + Object next()
+}
+interface Container <<interface>> {
+  + Iterator getIterator()
+}
+class IteratorExample{
+  + void main()
+  + thread_t1()
+  + thread_t2()
+  ArrayList :arrayList
+  ArrayList :synchronizedArrayList
+}
+
+Iterator <|-- IteratorExample
+Container <|-- IteratorExample
+
+@enduml

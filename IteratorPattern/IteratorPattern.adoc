@@ -1,0 +1,30 @@
+== Iterator
+
+ Nesne tabanlı dillerde uygulama geliştirilirken en sık kullanılan yapılardan biri de koleksiyonlardır. Iterator tasarım deseni ile koleksiyon yapısı bilinmesine ihtiyaç olmadan koleksiyon elemanları üzerinde işlem yapılabilmesini sağlar. Yani iterator tasarım deseni kullanılarak koleksiyonun array, queue, list olması önemli olmadan, aynı şekilde elemanlarının elde edilmesi sağlanır.
+ 
+ == UML Diyagramı
+ 
+....
+
+@startuml
+
+interface Iterator <<interface>> {
+  + boolean hasNext()
+  + Object next()
+}
+interface Container <<interface>> {
+  + Iterator getIterator()
+}
+class IteratorExample{
+  + void main()
+  + thread_t1()
+  + thread_t2()
+  ArrayList :arrayList
+  ArrayList :synchronizedArrayList
+}
+
+Iterator <|-- IteratorExample
+Container <|-- IteratorExample
+
+@enduml
+....

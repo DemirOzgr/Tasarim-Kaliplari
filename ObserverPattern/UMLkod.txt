@@ -1,0 +1,35 @@
+@startuml
+class Discount {
+    -String name;
+}
+interface DiscountAddedListener <<interface>> {
+ +void onDiscountAdded ()
+}
+class PrintNameDiscountAddedListener{
+ +void onDiscountAdded()
+}
+class ThreadObserveTestService{
+ +void Main()
+}
+class ThreadSafeCountingDiscountAddedListener{
+ -static AtomicLong discountsAddedCount
+ +void onDiscountAdded()
+}
+class ThreadSafeDiscount {
+    -final ReadWriteLock readWriteLock
+    #final Lock readLock 
+    #final Lock writeLock
+    -List<Discount> discounts
+    -List<DiscountAddedListener> listeners
+    +void addDiscount()
+    +DiscountAddedListener()
+    +void unregisterDiscountAddedListener()
+    +void notifyDiscountAddedListeners() 
+}
+DiscountAddedListener<|.. ThreadSafeCountingDiscountAddedListener
+DiscountAddedListener<|.. PrintNameDiscountAddedListener
+Discount --> DiscountAddedListener
+ThreadSafeDiscount  --> DiscountAddedListener
+ThreadObserveTestService ..> ThreadSafeDiscount : addDiscount
+ThreadObserveTestService ..> PrintNameDiscountAddedListener
+@enduml
