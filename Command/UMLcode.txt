@@ -1,0 +1,39 @@
+@startuml
+title Classes - Class Diagram
+rectangle Command {
+interface Commands<<interface>> {
+  + void apply()
+}
+
+class DiscountAdd{
+  - Discount discount
+  + void DiscountAdd()
+  + void apply() 
+}
+
+class DiscountRemove{
+  - Discount discount
+  + void DiscountRemove()
+  + void apply() 
+}
+}
+class Discount {
+  - String discount
+  + void add()
+  + void remove()
+}
+
+class Admin{
+  - List<Commands> commendsList
+  + void Commander()
+  + void giveACommand()
+} 
+
+class Main{
+  + void main()
+}
+Commands<|.. DiscountAdd
+Commands<|.. DiscountRemove
+Main--> Admin
+Main-left-> Discount
+Admin -right-> Command

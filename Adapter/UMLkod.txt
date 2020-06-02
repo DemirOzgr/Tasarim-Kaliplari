@@ -1,0 +1,32 @@
+@startuml
+class Main{
+  +void main()
+}
+interface Product<<interface>> {
+  +String getName()
+  +double getPrice()
+}
+
+class MarketItemAdapter{
+  -MarketItem marketItem
+}
+class MarketItem {
+    +String itemName;
+    +int costPerUnit;
+}
+class SportProduct{
+    +String itemName;
+    +double costPerUnit;
+}
+class ShopInventory {
+ -List<Product> products;
+ +void addProduct()
+ +void removeProduct()
+}
+Product<|..MarketItemAdapter
+Product<|..SportProduct
+Main ---> MarketItem
+MarketItemAdapter ---> MarketItem
+Main --->SportProduct
+Main --->ShopInventory
+@enduml

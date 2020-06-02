@@ -1,0 +1,41 @@
+@startuml
+title Classes - Class Diagram
+rectangle OpenClosedPrinciple{
+interface Discount<<interface>> {
+  +void getDiscount()
+}
+class NormalSaleDicount{
+  -double customerPoint
+  -double dailyDiscount
+  -double productPoint
+  -double productAmount
+  +double getDiscount()
+}
+class TelesalesDiscount{
+  -double telesalesPoint
+  -double customerPoint
+  -double dailyDiscount
+  +double getDiscount()
+}
+class TvSaleDicount{
+  -double tvPoint
+  -double tvPrice
+  -double customerPoint
+  -double dailyDiscount
+  +double getDiscount()
+}
+}
+class DiscountService {
+  +ArrayList<Double> arrayList
+  +double price
+  +List calculateDiscount()
+}
+class Main{
+  +void main()
+}
+Discount<|.. NormalSaleDicount
+Discount<|.. TelesalesDiscount
+Discount<|.. TvSaleDicount
+Main--> DiscountService
+DiscountService -right->OpenClosedPrinciple
+@enduml
